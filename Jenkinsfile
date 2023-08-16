@@ -12,7 +12,7 @@ pipeline {
         '''
      }
    }
-    stage ('test') {
+    stage ('Test') {
       steps {
         sh '''#!/bin/bash
         source test3/bin/activate
@@ -27,7 +27,7 @@ pipeline {
        
       }
     }
-     stage ('test') {
+     stage ('Deploy') {
       steps {
         input(message: 'Are you ready to deploy?', ok: 'Continue')
     }
