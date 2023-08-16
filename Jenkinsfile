@@ -27,7 +27,7 @@ pipeline {
        
       }
     }
-     stage ('test') {
+     stage ('deploy') {
       steps {
         input(message: 'Are you ready to deploy?', ok: 'Continue', no: 'Stop')
     }
