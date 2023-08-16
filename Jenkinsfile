@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment{
   PACKAGE_VERSION="1.0.0.${BUILD_NUMBER}"
-  ZIP_SOURCE_DIR="${WORKSPACE/*}"
+  ZIP_SOURCE_DIR="${WORKSPACE}"
   ZIP_OUTFILE="${WORKSPACE}/build/${PACKAGE_VERSION}.zip"
  }
    stages {
