@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  environment{
+  PACKAGE_VERSION="1.0.0.${BUILD_NUMBER}"
+  ZIP_SOURCE_DIR="${WORKSPACE/*}"
+  ZIP_OUTFILE="${WORKSPACE}/build/${PACKAGE_VERSION}.zip"
+ }
    stages {
     stage ('Build') {
       steps {
@@ -29,8 +34,13 @@ pipeline {
     }
      stage ('Deploy') {
       steps {
-        input(message: 'Are you ready to deploy?', ok: 'Continue')
+        input(message: 'Are you ready to deploy?', ok: 'Continue', no: 'Stop')
     }
+  }
+    stage('Packaging the output files'){
+   steps{
+    zip dir:env:ZIP_SOURCEDIR, exclude: '' , glob: '', zipFile: env.ZIP_OUTFILE, overwrite: true
+   }   
   }
  }
 }
