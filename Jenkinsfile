@@ -27,6 +27,9 @@ pipeline {
        
       }
     }
-   
+     stage ('test') {
+      steps {
+        input(message: 'Are you ready to deploy?', ok: 'Continue', no: 'Stop')
+    }
   }
  }
