@@ -1,9 +1,8 @@
 pipeline {
     agent any
     environment {
-        PACKAGE_VERSION = "1.0.0.${BUILD_NUMBER}"
-        ZIP_SOURCE_DIR = "${WORKSPACE}"
-        ZIP_OUTFILE = "${WORKSPACE}/build/${PACKAGE_VERSION}.zip"
+        PACKAGE_VERSION = "1.0.${BUILD_NUMBER}"
+        ZIP_OUTFILE = "${WORKSPACE}/build-${PACKAGE_VERSION}.zip"
     }
     stages {
         stage ('Build') {
@@ -37,7 +36,7 @@ pipeline {
         }
         stage ('Packaging the output files') {
             steps {
-                zip dir: env.ZIP_SOURCE_DIR, exclude: '', glob: '', zipFile: env.ZIP_OUTFILE, overwrite: true
+                zip dir: env.ZIP_OUTFILE
             }
         }
     }
