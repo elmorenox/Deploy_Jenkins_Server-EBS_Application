@@ -36,7 +36,7 @@ pipeline {
         }
         stage ('Packaging the output files') {
             steps {
-                zip dir: env.ZIP_OUTFILE
+                zip zipFile: 'Test.zip', dir: env.ZIP_OUTFILE
             }
         }
     }
