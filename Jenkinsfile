@@ -30,13 +30,9 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy') {
-            steps {
-                input(message: 'Are you ready to deploy?', ok: 'Continue')
-            }
-        }
         stage ('Packaging the output files') {
             steps {
+                 input(message: 'Proceed to the next step?', ok: 'Continue')
                 zip dir: env.ZIP_SOURCE_DIR, exclude: '', glob: '', zipFile: env.ZIP_OUTFILE, overwrite: true
             }
         }
