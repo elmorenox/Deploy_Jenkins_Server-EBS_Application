@@ -32,7 +32,7 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                input(message: 'Are you ready to deploy?', ok: 'Continue', abort: 'Stop')
+                input(message: 'Are you ready to deploy?', ok: 'Continue')
             }
         }
         stage ('Packaging the output files') {
