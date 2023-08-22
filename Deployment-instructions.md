@@ -4,7 +4,7 @@
 
 ## Deployment Instructions:
 1. Create your own Jenkins Server and install the following on the server:
-   - Install "python3.9-venv"
+   - Install "python3.10-venv"
    - Download and install the Jenkins plugin "Pipeline Utility Steps" 
 3. Create and run a Jenkins build for the application
 4. Observe the pipeline stages via the console output and document what occurred
