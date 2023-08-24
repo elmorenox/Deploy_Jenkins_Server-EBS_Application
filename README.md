@@ -1,5 +1,7 @@
+#TODO: DESCRIPTION
+
 - Create EC2 instance
-  TODO: Spcification
+  #TODO: Spcification
 
 https://www.jenkins.io/doc/book/installing/linux/
 - Connect to instance
