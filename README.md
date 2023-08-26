@@ -7,7 +7,7 @@
 3. Checking out the Flask application from this repository to test and build through the Jenkins service.
 4. Deploying the bundle produces by the Jenkins build as an Elastic Beanstalk Application.
 
-![1693024774121]([image/README/1693024774121.png](https://github.com/elmorenox/Deploy_Jenkins_Server-EBS_Application/blob/main/Jenkins-Elasticbeanstalk-Diagram.png))
+![Jenkins-Elasticbeanstalk-Diagram](https://github.com/elmorenox/Deploy_Jenkins_Server-EBS_Application/blob/main/Jenkins-Elasticbeanstalk-Diagram.png)
 
 ## **AWS EC2**
 
