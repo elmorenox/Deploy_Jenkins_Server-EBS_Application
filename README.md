@@ -2,10 +2,10 @@
 
 **This repository is used to rehearse:**
 
-1. The deployment of an AWS EC2 instance.
+1. Standing up an AWS EC2 instance.
 2. Installing a Jenkins service on the EC2 instance.
 3. Checking out the Flask application from this repository to test and build through the Jenkins service.
-4. Deploying the bundle produces by the Jenkins build as an Elastic Beanstalk Application.
+4. Deploying the application bundle produced by the Jenkins build as an Elastic Beanstalk Application.
 
 ![Jenkins-Elasticbeanstalk-Diagram](https://github.com/elmorenox/Deploy_Jenkins_Server-EBS_Application/blob/main/Jenkins-Elasticbeanstalk-Diagram.png)
 
@@ -23,7 +23,6 @@ Create EC2 instance to host the Jenkins service
 
 ## Jenkins
 
-
 Access your EC2 instance's terminal through instance connect. We'll set up the linux environment to install Jenkins. 
 https://www.jenkins.io/doc/book/installing/linux/
 
@@ -37,6 +36,7 @@ sudo apt update
 sudo apt-get update
 ```
 
+Install Java
 - This is a jenkins dependency
 
 ```bash
@@ -115,7 +115,7 @@ Create your pipeline
 
 Build
 
-- Click on 'Build Now'
+- From the Jenkins dashb click on 'Build Now'
 - Download the output zip to your local machine
 - Hover over your builds number under the 'Build History' section. Click on 'Console Output'
 - Look for the output directory of the zip compression command. It set output in a jenkins workspace folder.
