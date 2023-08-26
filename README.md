@@ -1,6 +1,6 @@
-# Rehearsing EC2, Jenkins Service and Elastic Beanstalk
+# Deploying a Jenkins Service and Elastic Beanstalk Application
 
-**This repository is used to rehearse:**
+Summary
 
 1. Standing up an AWS EC2 instance.
 2. Installing a Jenkins service on the EC2 instance.
