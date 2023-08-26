@@ -7,7 +7,7 @@
 3. Checking out the Flask application from this repository to test and build through the Jenkins service.
 4. Deploying the bundle produces by the Jenkins build as an Elastic Beanstalk Application.
 
-![1693024774121](image/README/1693024774121.png)
+![1693024774121]([image/README/1693024774121.png](https://github.com/elmorenox/Deploy_Jenkins_Server-EBS_Application/blob/main/Jenkins-Elasticbeanstalk-Diagram.png))
 
 ## **AWS EC2**
 
@@ -15,7 +15,7 @@ Create EC2 instance to host the Jenkins service
 
 - From the EC2 dashboard click on 'Launch Instance'
 - Name your instance
-- Select an Ubuntu image
+- Select an Ubuntu image. 
 - Select and t2.Micro instance type. This is a very small application so we don't need much.
 - Select a key pair to be able to login to the instance
 - Select a security group or set a security that allows inbound traffic over SSH and HTTP traffict on port 22 and 80 respectively
@@ -23,7 +23,9 @@ Create EC2 instance to host the Jenkins service
 
 ## Jenkins
 
-Access your EC2 instance's terminal through instance connect
+
+Access your EC2 instance's terminal through instance connect. We'll set up the linux environment to install Jenkins. 
+https://www.jenkins.io/doc/book/installing/linux/
 
 Update dependency managers
 
