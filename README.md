@@ -7,24 +7,25 @@
 3. Checking out the Flask application from this repository to test and build through the Jenkins service.
 4. Deploying the application bundle produced by the Jenkins build as an Elastic Beanstalk Application.
 
-![Jenkins-Elasticbeanstalk-Diagram](https://github.com/elmorenox/Deploy_Jenkins_Server-EBS_Application/blob/main/Jenkins-Elasticbeanstalk-Diagram.png)
+![Jenkins-Elasticbeanstalk-Diagram](./Jenkins-Elasticbeanstalk-Diagram.png)
 
-## **AWS EC2**
+## AWS EC2
 
 Create EC2 instance to host the Jenkins service
 
 - From the EC2 dashboard click on 'Launch Instance'
 - Name your instance
-- Select an Ubuntu image. 
+- Select an Ubuntu image
 - Select and t2.Micro instance type. This is a very small application so we don't need much.
 - Select a key pair to be able to login to the instance
-- Select a security group or set a security that allows inbound traffic over SSH and HTTP traffict on port 22 and 80 respectively
+- Select a security group or set a security that allows inbound traffic over SSH and HTTP traffic on port 22 and 80 respectively
 - Launch the instance
 
 ## Jenkins
 
-Access your EC2 instance's terminal through instance connect. We'll set up the linux environment to install Jenkins. 
-https://www.jenkins.io/doc/book/installing/linux/
+Access your EC2 instance's terminal through instance connect. We'll set up the linux environment to install Jenkins.
+
+[Official Jenkins Install docs](https://www.jenkins.io/doc/book/installing/linux/)
 
 Update dependency managers
 
@@ -37,6 +38,7 @@ sudo apt-get update
 ```
 
 Install Java
+
 - This is a jenkins dependency
 
 ```bash
@@ -44,7 +46,7 @@ sudo apt install openjdk-17-jre
 ```
 
 Install venv for python 3.10.
--This is used to create virtual python environment and run the pip commands for the test and build of the flask application.
+-This is used to create virtual python environment and run the pip commands for the test and build of the flask application
 
 - This will also install python 3.10
 
@@ -107,7 +109,7 @@ Create your pipeline
 - Click on 'Add' under the credential drop down, select Jenkins
 - Click on the Kind dropdown select 'Username with password'
 - Add your Github username to the username' field
-- In the 'password' field add the GitHub token you generated.
+- In the 'password' field add the GitHub token you generated
 - Click 'Add'. The modal will close.
 - You can now select your credential in the 'Credentials' dropdown
 - Ensure you have the desired branch to pull in the 'Branch Specifier' field
@@ -118,9 +120,9 @@ Build
 - From the Jenkins dashb click on 'Build Now'
 - Download the output zip to your local machine
 - Hover over your builds number under the 'Build History' section. Click on 'Console Output'
-- Look for the output directory of the zip compression command. It set output in a jenkins workspace folder.
+- Look for the output directory of the zip compression command. It set output in a jenkins workspace folder
 
-Download the zip file to your local machine. You'll need to have an established SSH connection between you local machine and the Jenkins server. See the next section to set that up.
+Download the zip file to your local machine. You'll need to have an established SSH connection between you local machine and the Jenkins server. See the next section to set that up
 
 -Once you have and established ssh connection you can run this to download the zip to your local machine
 
@@ -130,7 +132,7 @@ scp user@ec2.public.ip:/path/to/zip /local/directory
 
 ### SSH Connection
 
-If you don't have an SSH private and public keys. Use ``ssh-keygen`` on your local machine to make some keys.
+If you don't have an SSH private and public keys. Use ``ssh-keygen`` on your local machine to make some keys
 
 - From ~/ssh/ run:
 
@@ -138,7 +140,7 @@ If you don't have an SSH private and public keys. Use ``ssh-keygen`` on your loc
 ssh-keygen 
 ```
 
-- Open the generated id_rsa.pub key and copy the key.
+- Open the generated id_rsa.pub key and copy the key
 - Navigate to ~./ssh/ in your EC2 instance
 - Open the authorized_keys file
 - Append your public key
@@ -153,7 +155,7 @@ ssh -T user@ip
 Create an IAM role for EC2 and EBS. These roles will be used to service EBS deployment, application and EC2 host
 
 - In the IAM Management Console click on Roles
-- In the Roles page click on 'Create role'.
+- In the Roles page click on 'Create role'
 
 EBS Service Role
 
@@ -167,7 +169,7 @@ EC2 Role
 - Click on 'Create role' again in the IAM Management Console
 - Select 'AWS Service as the Trusted Entity Type
 - Select 'EC2' as the Use Case
-- Add AWSElasticBeanstalkMulticontainerDocker, AWSElasticBeanstalkWorkerTier, AWSElasticBeanstalkWebTier permission policies.
+- Add AWSElasticBeanstalkMulticontainerDocker, AWSElasticBeanstalkWorkerTier, AWSElasticBeanstalkWebTier permission policies
 - Name the role 'Elastic-EC2' and create
 
 Create the EBS deployment and application
@@ -184,3 +186,15 @@ Create the EBS deployment and application
 - Select your desired boot device and size like General Purpose SSD and 10GB
 - Select an Instance type like T2.Micro
 - Submit
+
+## Places for improvement
+
+- Create the EBS application as a deploy stage in Jenkins
+- Manually create the EBS applicaiton but upload through Jenkins
+
+e.g.
+
+```bash
+aws elasticbeanstalk create-application-version --application-name my-app --version-label 12345 --source-bundle /path/to/bundle"
+aws elasticbeanstalk update-environment --application-name my-app --environment-name MyApp-env --version-label 12345
+```
